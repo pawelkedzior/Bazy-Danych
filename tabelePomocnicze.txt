@@ -1,0 +1,24 @@
+CREATE TABLE proponowaniPracownicy(Imie VARCHAR(30) NOT NULL, 
+	Nazwisko VARCHAR(30) NOT NULL, 
+	IdPracownika VARCHAR(15) NOT NULL, 
+	Stanowisko VARCHAR(20) NOT NULL, 
+	Proponujacy VARCHAR(15), 
+	Wyplata REAL(8,2) NOT NULL, 
+	Sklep VARCHAR(30), 
+	FOREIGN KEY (Sklep) REFERENCES Sklepy(Lokalizacja),
+	FOREIGN KEY (Proponujacy) REFERENCES Pracownicy(IdPracownika));
+	
+CREATE TABLE proponowanePodwyzki(IdPracownika VARCHAR(15) NOT NULL, 
+	WysokoscStara REAL(8,2) NOT NULL,
+	WysokoscNowa REAL(8,2) NOT NULL,   
+	DataPropozycji DATE,
+	Proponujacy VARCHAR(15), 
+	FOREIGN KEY (IdPracownika) REFERENCES Pracownicy(IdPracownika),
+	FOREIGN KEY (Proponujacy) REFERENCES Pracownicy(IdPracownika));
+	
+CREATE TABLE proponowanePremie(IdPracownika VARCHAR(15) NOT NULL, 
+	Premia REAL(8,2),  
+	DataPropozycji DATE,
+	Proponujacy VARCHAR(15),
+	FOREIGN KEY (IdPracownika) REFERENCES Pracownicy(IdPracownika),
+	FOREIGN KEY (Proponujacy) REFERENCES Pracownicy(IdPracownika));

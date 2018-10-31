@@ -1,0 +1,76 @@
+CREATE TABLE Sklepy(Lokalizacja VARCHAR(30) NOT NULL, 
+	Ulica VARCHAR(30), 
+	Numer VARCHAR(10) NOT NULL, 
+	KodPocztowy VARCHAR(6) NOT NULL, 
+	Miejscowosc VARCHAR(50) NOT NULL, 
+	PRIMARY KEY (Lokalizacja));
+
+CREATE TABLE Pracownicy(Imie VARCHAR(30) NOT NULL, 
+	Nazwisko VARCHAR(30) NOT NULL, 
+	IdPracownika VARCHAR(15) NOT NULL, 
+	Stanowisko VARCHAR(20) NOT NULL, 
+	Przelozony VARCHAR(15), 
+	Wyplata REAL(8,2) NOT NULL, 
+	Sklep VARCHAR(30), 
+	PRIMARY KEY (IdPracownika), 
+	FOREIGN KEY (Sklep) REFERENCES Sklepy(Lokalizacja));
+
+CREATE TABLE Magazyny(Sklep VARCHAR(30) NOT NULL, 
+	FOREIGN KEY (Sklep) REFERENCES Sklepy(Lokalizacja));
+	
+CREATE TABLE Zamowienia(IdZamowienia VARCHAR(20) NOT NULL, 
+	CelZamowienia VARCHAR(30) NOT NULL, 
+	DataZlozenia TIMESTAMP NOT NULL, 
+	Zleceniodawca VARCHAR(15) NOT NULL, 
+	PRIMARY KEY (IdZamowienia), 
+	FOREIGN KEY (Zleceniodawca) REFERENCES Pracownicy(IdPracownika), 
+	FOREIGN KEY (CelZamowienia) REFERENCES Magazyny(Sklep));
+
+CREATE TABLE Dostawy(IdDostawy VARCHAR(20) NOT NULL, 
+	NumerZamowienia VARCHAR(20) NOT NULL, 
+	CelDostawy VARCHAR(30) NOT NULL, 
+	DataDostawy DATE NOT NULL, 
+	Oplata REAL(8,2) NOT NULL, 
+	PRIMARY KEY (IdDostawy), 
+	FOREIGN KEY (NumerZamowienia) REFERENCES Zamowienia(IdZamowienia), 
+	FOREIGN KEY (CelDostawy) REFERENCES Magazyny(Sklep));
+
+CREATE TABLE Produkty(NumerZamowienia VARCHAR(20) NOT NULL, 
+	NumerDostawy VARCHAR(20) NOT NULL, 
+	MagazynDocelowy VARCHAR(30) NOT NULL, 
+	Rodzaj VARCHAR(30) NOT NULL, 
+	Ilosc REAL(12,2) NOT NULL, 
+	MiejscePrzebywania VARCHAR(15), 
+	CONSTRAINT prod_klucz PRIMARY KEY (NumerZamowienia, NumerDostawy, MagazynDocelowy, Rodzaj), 
+	FOREIGN KEY(NumerZamowienia) REFERENCES Zamowienia(IdZamowienia), 
+	FOREIGN KEY(NumerDostawy) REFERENCES Dostawy(IdDostawy), 
+	FOREIGN KEY(MagazynDocelowy) REFERENCES Magazyny(Sklep));
+
+CREATE TABLE Wyplaty(IdWyplaty VARCHAR(15) NOT NULL, 
+	IdPracownika VARCHAR(15) NOT NULL, 
+	Wysokosc REAL(8,2) NOT NULL, 
+	Premia REAL(8,2), 
+	DataWyplaty TIMESTAMP, 
+	PRIMARY KEY (IdWyplaty), 
+	FOREIGN KEY (IdPracownika) REFERENCES Pracownicy(IdPracownika));
+
+CREATE TABLE Przychody(IdPrzychodu VARCHAR(20) NOT NULL, 
+	Zrodlo VARCHAR(30) NOT NULL, 
+	Wysokosc REAL(11,2) NOT NULL, 
+	Data TIMESTAMP NOT NULL, 
+	PRIMARY KEY (IdPrzychodu), 
+	FOREIGN KEY (Zrodlo) REFERENCES Sklepy(Lokalizacja));
+
+CREATE TABLE Utrzymania(Lp int NOT NULL, 
+	TerminZaplaty DATE, 
+	Zrodlo VARCHAR(30) NOT NULL, 
+	Wysokosc REAL(11,2), 
+	DataZaplaty TIMESTAMP, 
+	CONSTRAINT utrz_klucz PRIMARY KEY (Zrodlo, Lp), 
+	FOREIGN KEY (Zrodlo) REFERENCES Sklepy(Lokalizacja));
+
+CREATE TABLE Wydatki(IdWydatku VARCHAR(30) NOT NULL, 
+	Zrodlo VARCHAR(30) NOT NULL, 
+	Wysokosc REAL(12,2) NOT NULL, 
+	Data TIMESTAMP NOT NULL, 
+	PRIMARY KEY (IdWydatku));

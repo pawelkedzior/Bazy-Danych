@@ -1,0 +1,9 @@
+INSERT INTO Sklepy VALUES ('GrotaRoweckiegoKRK','Grota-Roweckiego','39/24','30-348','Kraków');
+
+INSERT INTO Pracownicy VALUES ('Pawel','Kedzior','wlasciciel','Wlasciciel',null,0.00,null);
+
+INSERT INTO Pracownicy VALUES ('Jan','Skrzetuski','koordynator','Koordynator','wlasciciel',6000.00,'GrotaRoweckiegoKRK');
+
+INSERT INTO Pracownicy VALUES ('Jan','Zagloba','pracownik1','Sprzedawca','koordynator',4000.00,'GrotaRoweckiegoKRK');
+INSERT INTO Pracownicy VALUES ('Michal','Wolodyjowski','pracownik2','Sprzedawca','koordynator',3800.00,'GrotaRoweckiegoKRK');
+INSERT INTO Pracownicy VALUES ('Andrzej','Kmicic','pracownik3','Sprzedawca','koordynator',4350.00,'GrotaRoweckiegoKRK');

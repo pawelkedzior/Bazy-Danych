@@ -1,0 +1,38 @@
+CREATE USER 'wlasciciel'@'localhost' IDENTIFIED BY 'admin';
+GRANT ALL PRIVILEGES ON siecsklepow.* TO 'wlasciciel'@'localhost';
+
+CREATE USER 'pracownik1'@'localhost' IDENTIFIED BY 'prac1';
+CREATE USER 'pracownik2'@'localhost' IDENTIFIED BY 'prac2';	
+CREATE USER 'pracownik3'@'localhost' IDENTIFIED BY 'prac3';
+	GRANT ALL PRIVILEGES ON siecsklepow.Zamowienia TO 'pracownik3'@'localhost';
+	GRANT ALL PRIVILEGES ON siecsklepow.Dostawy TO 'pracownik3'@'localhost';
+	GRANT ALL PRIVILEGES ON siecsklepow.Magazyny TO 'pracownik3'@'localhost';
+	GRANT ALL PRIVILEGES ON siecsklepow.Sklepy TO 'pracownik3'@'localhost';
+	GRANT ALL PRIVILEGES ON siecsklepow.Pracownicy TO 'pracownik3'@'localhost';
+	GRANT ALL PRIVILEGES ON siecsklepow.Produkty TO 'pracownik3'@'localhost';
+GRANT ALL PRIVILEGES ON siecsklepow.Zamowienia TO 'pracownik2'@'localhost';
+GRANT ALL PRIVILEGES ON siecsklepow.Dostawy TO 'pracownik2'@'localhost';
+GRANT ALL PRIVILEGES ON siecsklepow.Magazyny TO 'pracownik2'@'localhost';
+GRANT ALL PRIVILEGES ON siecsklepow.Sklepy TO 'pracownik2'@'localhost';
+GRANT ALL PRIVILEGES ON siecsklepow.Pracownicy TO 'pracownik2'@'localhost';
+GRANT ALL PRIVILEGES ON siecsklepow.Produkty TO 'pracownik2'@'localhost';
+	GRANT ALL PRIVILEGES ON siecsklepow.Zamowienia TO 'pracownik1'@'localhost';
+	GRANT ALL PRIVILEGES ON siecsklepow.Dostawy TO 'pracownik1'@'localhost';
+	GRANT ALL PRIVILEGES ON siecsklepow.Magazyny TO 'pracownik1'@'localhost';
+	GRANT ALL PRIVILEGES ON siecsklepow.Sklepy TO 'pracownik1'@'localhost';
+	GRANT ALL PRIVILEGES ON siecsklepow.Pracownicy TO 'pracownik1'@'localhost';
+	GRANT ALL PRIVILEGES ON siecsklepow.Produkty TO 'pracownik1'@'localhost';
+
+CREATE USER 'koordynator'@'localhost' IDENTIFIED BY 'koord';
+	GRANT ALL PRIVILEGES ON siecsklepow.Zamowienia TO 'koordynator'@'localhost';
+	GRANT ALL PRIVILEGES ON siecsklepow.Dostawy TO 'koordynator'@'localhost';
+	GRANT ALL PRIVILEGES ON siecsklepow.Magazyny TO 'koordynator'@'localhost';
+	GRANT ALL PRIVILEGES ON siecsklepow.Sklepy TO 'koordynator'@'localhost';
+	GRANT ALL PRIVILEGES ON siecsklepow.Pracownicy TO 'koordynator'@'localhost';
+	GRANT ALL PRIVILEGES ON siecsklepow.Przychody TO 'koordynator'@'localhost';
+	GRANT ALL PRIVILEGES ON siecsklepow.Utrzymania TO 'koordynator'@'localhost';
+	GRANT ALL PRIVILEGES ON siecsklepow.Wyplaty TO 'koordynator'@'localhost';
+	GRANT ALL PRIVILEGES ON siecsklepow.Produkty TO 'koordynator'@'localhost';
+	GRANT ALL PRIVILEGES ON siecsklepow.proponowaniPracownicy TO 'koordynator'@'localhost';
+	GRANT ALL PRIVILEGES ON siecsklepow.proponowanePodwyzki TO 'koordynator'@'localhost';
+	GRANT ALL PRIVILEGES ON siecsklepow.proponowanePremie TO 'koordynator'@'localhost';
